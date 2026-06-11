@@ -15,15 +15,15 @@ import java.util.Date;
 public class JWTUtil {
 
 
-    @Value("${jwt.secret.key}")
-    private String SECRET_KEY;
+
+    private String SECRET_KEY = "i-am-shreeshail-and-am-implementing-jwt-tokens-and-this-is-my-secret-key1234567@##@$#";
     private SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
      //generating token
     public String generateToken(String username){
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis()+ 10000))
+                .expiration(new Date(System.currentTimeMillis()+ 1000*60*60))
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
     }
